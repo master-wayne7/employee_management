@@ -354,13 +354,16 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
               colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
               height: 19.2,
             ),
-            9.68.horizontalSpaceRadius,
-            Text(
-              date != null ? getFormattedDate(date) : hint,
-              style: AppTextStyles.robotoF14(
-                color: date == null ? AppColors.hintColor : AppColors.textColor,
-                weight: FontWeight.w400,
-              ).copyWith(fontSize: 14),
+            const SizedBox(width: 9.68),
+            Flexible(
+              child: Text(
+                date != null ? getFormattedDate(date) : hint,
+                style: AppTextStyles.robotoF14(
+                  color: date == null ? AppColors.hintColor : AppColors.textColor,
+                  weight: FontWeight.w400,
+                ).copyWith(fontSize: 14),
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),

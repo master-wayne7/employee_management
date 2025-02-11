@@ -75,15 +75,15 @@ class EmployeeListScreen extends StatelessWidget {
           children: [
             Image.asset(
               'assets/images/no_record.png',
-              width: 261.79.sp,
-              height: 218.85.sp,
+              width: 261.79.r,
+              height: 218.85.r,
             ),
             Text(
               'No employee records found',
               style: AppTextStyles.robotoF18(
                 color: AppColors.textColor,
                 weight: FontWeight.w500,
-              ),
+              ).copyWith(fontSize: 18.r),
             ),
           ],
         ),
