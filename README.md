@@ -1,16 +1,44 @@
-# employee_management
+# Employee Management App
 
-A new Flutter project.
+A Flutter application for managing employee records with offline storage capabilities.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Create, Read, Update, and Delete (CRUD) operations for employee records
+- Offline data persistence using Hive database
+- BLoC pattern for state management
+- Responsive UI design with Flutter ScreenUtil
+- Custom date picker and form validation
+- Slidable list items for quick actions
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter**: UI framework
+- **Hive**: Local database
+- **flutter_bloc**: State management
+- **flutter_screenutil**: Responsive design
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project Structure
+```
+lib/ 
+├── src/ 
+│ ├── bloc/ # Business Logic Components 
+│ ├── config/ # App configurations 
+│ ├── data/ # Data layer and repositories 
+│ ├── models/ # Data models 
+│ ├── screens/ # UI screens 
+│ └── widgets/ # Reusable widgets 
+└── main.dart # Entry point
+```
+## Screenshots
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+    <img src="screenshots/1.jpg" width="200" alt="Employee List"/>
+    <img src="screenshots/2.jpg" width="200" alt="Add Employee"/>
+    <img src="screenshots/3.jpg" width="200" alt="Edit Employee"/>
+    <img src="screenshots/4.jpg" width="200" alt="Delete Employee"/>
+    <img src="screenshots/5.jpg" width="200" alt="Employee Details"/>
+    <img src="screenshots/6.jpg" width="200" alt="Form Validation"/>
+    <img src="screenshots/7.jpg" width="200" alt="Date Picker"/>
+</div>
+
