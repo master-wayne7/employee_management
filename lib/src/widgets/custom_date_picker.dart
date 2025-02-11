@@ -50,7 +50,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
     return Expanded(
       child: CustomButton(
         text: text,
-        constraints: BoxConstraints(minHeight: 36.sp),
+        constraints: const BoxConstraints(minHeight: 36),
         isSelected: isSelected,
         ontap: () => setState(
           () {
@@ -66,20 +66,20 @@ class CustomDatePickerState extends State<CustomDatePicker> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16.sp),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: EdgeInsets.all(16.sp),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 Column(
-                  spacing: 16.sp,
+                  spacing: 16,
                   children: [
                     Row(
-                      spacing: 16.sp,
+                      spacing: 16,
                       children: [
                         // build no date for ending dialog
                         if (widget.isEndDateDialog) _buildQuickSelectButton('No date', null),
@@ -101,7 +101,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
                     // not to build the next day button for end dialog
                     if (!widget.isEndDateDialog)
                       Row(
-                        spacing: 16.sp,
+                        spacing: 16,
                         children: [
                           _buildQuickSelectButton(
                             'Next Tuesday',
@@ -147,7 +147,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
 
           // footer row
           Padding(
-            padding: EdgeInsets.all(16.sp),
+            padding: const EdgeInsets.all(16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -155,24 +155,25 @@ class CustomDatePickerState extends State<CustomDatePicker> {
                 SvgPicture.asset(
                   "assets/svg/calendar.svg",
                   colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
-                  height: 23.sp,
+                  height: 23,
                 ),
                 12.horizontalSpaceRadius,
-                Text(
-                  selectedDate != null ? getFormattedDate(selectedDate!) : "No date",
-                  style: AppTextStyles.robotoF16(
-                    color: AppColors.textColor,
-                    weight: FontWeight.w400,
+                Expanded(
+                  child: Text(
+                    selectedDate != null ? getFormattedDate(selectedDate!) : "No date",
+                    style: AppTextStyles.robotoF16(
+                      color: AppColors.textColor,
+                      weight: FontWeight.w400,
+                    ).copyWith(fontSize: 16),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-
-                const Spacer(),
 
                 // footer button for canceling the selection
                 CustomButton(
                   text: "Cancel",
                   isSelected: false,
-                  constraints: BoxConstraints(minWidth: 73.sp, minHeight: 40.sp),
+                  constraints: const BoxConstraints(minWidth: 73, minHeight: 40),
                   ontap: () {
                     Navigator.pop(context);
                   },
@@ -184,7 +185,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
                 CustomButton(
                   text: "Save",
                   isSelected: true,
-                  constraints: BoxConstraints(minWidth: 73.sp, minHeight: 40.sp),
+                  constraints: const BoxConstraints(minWidth: 73, minHeight: 40),
                   ontap: () {
                     widget.onDateSelected(selectedDate);
                   },

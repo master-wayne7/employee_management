@@ -7,7 +7,6 @@ import 'package:employee_management/src/config/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const Duration _monthScrollDuration = Duration(milliseconds: 200);
 
@@ -632,26 +631,26 @@ class _MonthPickerState extends State<_MonthPicker> {
                 children: <Widget>[
                   IconButton(
                     padding: EdgeInsets.zero,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_left_rounded,
-                      size: 24.sp,
+                      size: 30,
                     ),
                     color: controlColor,
-                    iconSize: 24.sp,
+                    iconSize: 30,
                     tooltip: _isDisplayingFirstMonth ? null : _localizations.previousMonthTooltip,
                     onPressed: _isDisplayingFirstMonth ? null : _handlePreviousMonth,
                   ),
                   Text(
                     widget.title,
-                    style: AppTextStyles.robotoF18(color: AppColors.textColor, weight: FontWeight.w500),
+                    style: AppTextStyles.robotoF18(color: AppColors.textColor, weight: FontWeight.w500).copyWith(fontSize: 18),
                     overflow: TextOverflow.ellipsis,
                   ),
                   IconButton(
                     padding: EdgeInsets.zero,
-                    iconSize: 24.sp,
-                    icon: Icon(
+                    iconSize: 30,
+                    icon: const Icon(
                       Icons.arrow_right_rounded,
-                      size: 24.sp,
+                      size: 30,
                     ),
                     color: controlColor,
                     tooltip: _isDisplayingLastMonth ? null : _localizations.nextMonthTooltip,
@@ -830,7 +829,7 @@ class _DayPickerState extends State<_DayPicker> {
   @override
   Widget build(BuildContext context) {
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
-    final TextStyle weekdayStyle = AppTextStyles.robotoF15(color: AppColors.textColor, weight: FontWeight.w400);
+    final TextStyle weekdayStyle = AppTextStyles.robotoF15(color: AppColors.textColor, weight: FontWeight.w400).copyWith(fontSize: 15);
 
     final Orientation orientation = MediaQuery.orientationOf(context);
     final bool isLandscapeOrientation = orientation == Orientation.landscape;
@@ -917,7 +916,7 @@ class _DayState extends State<_Day> {
   Widget build(BuildContext context) {
     final DatePickerThemeData defaults = DatePickerTheme.defaults(context);
     final DatePickerThemeData datePickerTheme = DatePickerTheme.of(context);
-    final TextStyle dayStyle = AppTextStyles.robotoF15(color: AppColors.textColor, weight: FontWeight.w400);
+    final TextStyle dayStyle = AppTextStyles.robotoF15(color: AppColors.textColor, weight: FontWeight.w400).copyWith(fontSize: 15);
     T? effectiveValue<T>(T? Function(DatePickerThemeData? theme) getProperty) {
       return getProperty(datePickerTheme) ?? getProperty(defaults);
     }

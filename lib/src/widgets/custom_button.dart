@@ -37,7 +37,7 @@ class CustomButton extends StatelessWidget {
       child: Container(
         constraints: constraints ?? const BoxConstraints(minHeight: 36),
         padding: padding ?? const EdgeInsets.all(8),
-        decoration: BoxDecoration(color: isSelected ? AppColors.primaryColor : AppColors.primaryColorLight, borderRadius: BorderRadius.circular(4.sp)),
+        decoration: BoxDecoration(color: isSelected ? AppColors.primaryColor : AppColors.primaryColorLight, borderRadius: BorderRadius.circular(4.r)),
         child: Center(
           child: Text(
             text,
@@ -45,7 +45,7 @@ class CustomButton extends StatelessWidget {
             style: AppTextStyles.robotoF14(
               color: isSelected ? AppColors.whiteColor : AppColors.primaryColor,
               weight: FontWeight.w400,
-            ),
+            ).copyWith(fontSize: 14),
           ),
         ),
       ),

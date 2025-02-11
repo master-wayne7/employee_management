@@ -80,11 +80,11 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 24.sp),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               color: AppColors.whiteColor,
               child: SingleChildScrollView(
                 child: Column(
-                  spacing: 23.sp,
+                  spacing: 23,
                   children: [
                     //name field
                     _buildInputField(
@@ -114,7 +114,7 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
 
                     // date selection field
                     Row(
-                      spacing: 16.sp,
+                      spacing: 16,
                       children: [
                         //start date
                         Expanded(
@@ -134,10 +134,10 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
                             },
                           ),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.arrow_forward_rounded,
                           color: AppColors.primaryColor,
-                          size: 20.sp,
+                          size: 20,
                         ),
 
                         //end date
@@ -172,7 +172,7 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
 
           //Footer
           Container(
-            padding: EdgeInsets.all(16.sp),
+            padding: const EdgeInsets.all(16),
             color: AppColors.whiteColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -180,14 +180,14 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
                 CustomButton(
                   text: "Cancel",
                   isSelected: false,
-                  constraints: BoxConstraints(minWidth: 73.sp, minHeight: 40.sp),
+                  constraints: const BoxConstraints(minWidth: 73, minHeight: 40),
                   ontap: () => Navigator.pop(context),
                 ),
                 16.horizontalSpaceRadius,
                 CustomButton(
                   text: "Save",
                   isSelected: true,
-                  constraints: BoxConstraints(minWidth: 73.sp, minHeight: 40.sp),
+                  constraints: const BoxConstraints(minWidth: 73, minHeight: 40),
                   ontap: _saveEmployee,
                 ),
               ],
@@ -204,27 +204,27 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
     required TextEditingController controller,
   }) {
     return Container(
-      padding: EdgeInsets.all(8.sp),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.borderColor),
-        borderRadius: BorderRadius.circular(4.sp),
+        borderRadius: BorderRadius.circular(4),
       ),
       child: Row(
-        spacing: 12.sp,
+        spacing: 12,
         children: [
           Icon(
             icon,
             color: AppColors.primaryColor,
-            size: 24.sp,
+            size: 24,
           ),
           Expanded(
             child: SizedBox(
-              height: 24.sp,
+              height: 24,
               child: TextField(
                 style: AppTextStyles.robotoF16(
                   color: AppColors.textColor,
                   weight: FontWeight.w400,
-                ),
+                ).copyWith(fontSize: 16),
                 controller: controller,
                 textCapitalization: TextCapitalization.words,
                 autofillHints: const [
@@ -238,7 +238,7 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
                   hintStyle: AppTextStyles.robotoF16(
                     color: AppColors.hintColor,
                     weight: FontWeight.w400,
-                  ),
+                  ).copyWith(fontSize: 16),
                 ),
               ),
             ),
@@ -256,18 +256,18 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(8.sp),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.borderColor),
-          borderRadius: BorderRadius.circular(4.sp),
+          borderRadius: BorderRadius.circular(4),
         ),
         child: Row(
-          spacing: 12.sp,
+          spacing: 12,
           children: [
             Icon(
               icon,
               color: AppColors.primaryColor,
-              size: 24.sp,
+              size: 24,
             ),
             Expanded(
               child: Text(
@@ -275,12 +275,12 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
                 style: AppTextStyles.robotoF16(
                   color: value.isEmpty ? AppColors.hintColor : AppColors.textColor,
                   weight: FontWeight.w400,
-                ),
+                ).copyWith(fontSize: 16),
               ),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_drop_down,
-              size: 20.sp,
+              size: 20,
               color: AppColors.primaryColor,
             ),
           ],
@@ -295,12 +295,12 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
   }) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16.sp)),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (context) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(16.sp)),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           color: AppColors.whiteColor,
         ),
         child: ListView.separated(
@@ -317,14 +317,14 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
               Navigator.pop(context);
             },
             child: Padding(
-              padding: EdgeInsets.all(16.sp),
+              padding: const EdgeInsets.all(16),
               child: Center(
                 child: Text(
                   items[index],
                   style: AppTextStyles.robotoF16(
                     color: AppColors.textColor,
                     weight: FontWeight.w400,
-                  ),
+                  ).copyWith(fontSize: 16),
                 ),
               ),
             ),
@@ -342,17 +342,17 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 8.sp),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.borderColor),
-          borderRadius: BorderRadius.circular(4.sp),
+          borderRadius: BorderRadius.circular(4),
         ),
         child: Row(
           children: [
             SvgPicture.asset(
               "assets/svg/calendar.svg",
               colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
-              height: 19.2.sp,
+              height: 19.2,
             ),
             9.68.horizontalSpaceRadius,
             Text(
@@ -360,7 +360,7 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
               style: AppTextStyles.robotoF14(
                 color: date == null ? AppColors.hintColor : AppColors.textColor,
                 weight: FontWeight.w400,
-              ),
+              ).copyWith(fontSize: 14),
             ),
           ],
         ),
@@ -376,7 +376,7 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
           insetPadding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: SizedBox(
-            width: 396.sp,
+            width: 396.sp > 700 ? 700 : 396.sp,
             child: CustomDatePicker(
               isEndDateDialog: isEndDateDialog,
               initialDate: initialDate ?? DateTime.now(),
