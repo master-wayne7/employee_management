@@ -93,63 +93,73 @@ class EmployeeListScreen extends StatelessWidget {
 
   /// This widget is responsible to show the employees data
   Widget _buildContent(EmployeeLoaded state) {
-    return Builder(builder: (context) {
+    return LayoutBuilder(builder: (context, constraints) {
       final now = DateTime.now();
       final currentEmployees = state.employees.where((e) => e.endDate == null || e.endDate!.isAfter(now)).toList();
       final previousEmployees = state.employees.where((e) => e.endDate != null && !e.endDate!.isAfter(now)).toList();
 
       return SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Current Employees (with endDate after now or no endDate)
-            if (currentEmployees.isNotEmpty) ...[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Current employees',
-                  style: AppTextStyles.robotoF16(
-                    weight: FontWeight.w500,
-                    color: AppColors.primaryColor,
-                  ).copyWith(fontSize: 16, height: 24 / 16),
-                ),
-              ),
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: currentEmployees.length,
-                itemBuilder: (context, index) {
-                  return _buildEmployeeListTile(context, currentEmployees[index], false);
-                },
-              ),
-            ],
+            constraints.maxWidth.horizontalSpace,
+            Container(
+              alignment: Alignment.topCenter,
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Current Employees (with endDate after now or no endDate)
+                  if (currentEmployees.isNotEmpty) ...[
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Current employees',
+                        style: AppTextStyles.robotoF16(
+                          weight: FontWeight.w500,
+                          color: AppColors.primaryColor,
+                        ).copyWith(fontSize: 16, height: 24 / 16),
+                      ),
+                    ),
+                    ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: currentEmployees.length,
+                      itemBuilder: (context, index) {
+                        return _buildEmployeeListTile(context, currentEmployees[index], false);
+                      },
+                    ),
+                  ],
 
-            // Previous Employees (with endDate before or equal to now)
-            if (previousEmployees.isNotEmpty) ...[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Previous employees',
-                  style: AppTextStyles.robotoF16(
-                    weight: FontWeight.w500,
-                    color: AppColors.primaryColor,
-                  ).copyWith(fontSize: 16, height: 24 / 16),
-                ),
-              ),
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: previousEmployees.length,
-                itemBuilder: (context, index) {
-                  return _buildEmployeeListTile(context, previousEmployees[index], true);
-                },
-              ),
-            ],
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              child: Text(
-                "Swipe left to delete",
-                style: AppTextStyles.robotoF15(weight: FontWeight.w400, color: AppColors.hintColor).copyWith(fontSize: 15),
+                  // Previous Employees (with endDate before or equal to now)
+                  if (previousEmployees.isNotEmpty) ...[
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Previous employees',
+                        style: AppTextStyles.robotoF16(
+                          weight: FontWeight.w500,
+                          color: AppColors.primaryColor,
+                        ).copyWith(fontSize: 16, height: 24 / 16),
+                      ),
+                    ),
+                    ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: previousEmployees.length,
+                      itemBuilder: (context, index) {
+                        return _buildEmployeeListTile(context, previousEmployees[index], true);
+                      },
+                    ),
+                  ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    child: Text(
+                      "Swipe left to delete",
+                      style: AppTextStyles.robotoF15(weight: FontWeight.w400, color: AppColors.hintColor).copyWith(fontSize: 15),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -196,7 +206,7 @@ class EmployeeListScreen extends StatelessWidget {
   Widget _buildEmployeeListTile(BuildContext context, Employee employee, bool isPreviousEmployee) {
     return Slidable(
       endActionPane: ActionPane(
-        extentRatio: 100 / MediaQuery.sizeOf(context).width,
+        extentRatio: 100 / MediaQuery.sizeOf(context).width.clamp(0, 600),
         motion: const ScrollMotion(),
         children: [
           SlidableAction(

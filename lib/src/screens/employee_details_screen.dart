@@ -82,85 +82,89 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               color: AppColors.whiteColor,
-              child: SingleChildScrollView(
-                child: Column(
-                  spacing: 23,
-                  children: [
-                    //name field
-                    _buildInputField(
-                      icon: Icons.person_outline,
-                      hint: 'Employee name',
-                      controller: _nameController,
-                    ),
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: SingleChildScrollView(
+                  child: Column(
+                    spacing: 23,
+                    children: [
+                      //name field
+                      _buildInputField(
+                        icon: Icons.person_outline,
+                        hint: 'Employee name',
+                        controller: _nameController,
+                      ),
 
-                    // role field
-                    _buildDropdownField(
-                      icon: Icons.work_outline,
-                      value: _roleController.text,
-                      onTap: () => openRoleSheet(
-                        onChanged: (String? value) {
-                          setState(() {
-                            _roleController.text = value ?? '';
-                          });
-                        },
-                        items: const [
-                          'Product Designer',
-                          'Flutter Developer',
-                          'QA Tester',
-                          'Product Owner',
+                      // role field
+                      _buildDropdownField(
+                        icon: Icons.work_outline,
+                        value: _roleController.text,
+                        onTap: () => openRoleSheet(
+                          onChanged: (String? value) {
+                            setState(() {
+                              _roleController.text = value ?? '';
+                            });
+                          },
+                          items: const [
+                            'Product Designer',
+                            'Flutter Developer',
+                            'QA Tester',
+                            'Product Owner',
+                          ],
+                        ),
+                      ),
+
+                      // date selection field
+                      Row(
+                        spacing: 16,
+                        children: [
+                          //start date
+                          Expanded(
+                            child: _buildDateField(
+                              date: _startDate,
+                              hint: 'Start date',
+                              onTap: () async {
+                                final date = await _selectDate(
+                                  context,
+                                  _startDate,
+                                  false,
+                                  null,
+                                );
+                                if (date != null) {
+                                  setState(() => _startDate = date);
+                                }
+                              },
+                            ),
+                          ),
+                          const Icon(
+                            Icons.arrow_forward_rounded,
+                            color: AppColors.primaryColor,
+                            size: 20,
+                          ),
+
+                          //end date
+                          Expanded(
+                            child: _buildDateField(
+                              date: _endDate,
+                              hint: 'No date',
+                              onTap: () async {
+                                final date = await _selectDate(
+                                  context,
+                                  _endDate,
+                                  true,
+                                  _startDate,
+                                );
+                                if (date != null) {
+                                  setState(() => _endDate = date);
+                                }
+                              },
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-
-                    // date selection field
-                    Row(
-                      spacing: 16,
-                      children: [
-                        //start date
-                        Expanded(
-                          child: _buildDateField(
-                            date: _startDate,
-                            hint: 'Start date',
-                            onTap: () async {
-                              final date = await _selectDate(
-                                context,
-                                _startDate,
-                                false,
-                                null,
-                              );
-                              if (date != null) {
-                                setState(() => _startDate = date);
-                              }
-                            },
-                          ),
-                        ),
-                        const Icon(
-                          Icons.arrow_forward_rounded,
-                          color: AppColors.primaryColor,
-                          size: 20,
-                        ),
-
-                        //end date
-                        Expanded(
-                          child: _buildDateField(
-                            date: _endDate,
-                            hint: 'No date',
-                            onTap: () async {
-                              final date = await _selectDate(
-                                context,
-                                _endDate,
-                                true,
-                                _startDate,
-                              );
-                              if (date != null) {
-                                setState(() => _endDate = date);
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
